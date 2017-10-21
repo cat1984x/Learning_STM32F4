@@ -32,8 +32,8 @@ int main(void)
 		
 		/*
 		//¼Ä´æÆ÷²Ù×÷
-		GPIOF->BSRRH= GPIO_Pin_9;
-		GPIOF->BSRRL= GPIO_Pin_10;
+		GPIOF->BSRRH= GPIO_Pin_9;//RESET 0
+		GPIOF->BSRRL= GPIO_Pin_10;//SET  1
 		delay_ms(1000);
 		GPIOF->BSRRL= GPIO_Pin_9;
 		GPIOF->BSRRH= GPIO_Pin_10;
