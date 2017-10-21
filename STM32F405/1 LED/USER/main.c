@@ -20,16 +20,17 @@ int main(void)
 		delay_ms(500);
 		*/
 		
-		/*
+		
 		//位带操作
-		LED0=0;
-		LED1=1;
+		LED0=0;//先亮
+		//LED1=1;
 		delay_ms(200);
 		LED0=1;
-		LED1=0;
+		//LED1=0;
 		delay_ms(200);
-		*/
 		
+		
+		/*
 		//寄存器操作
 		GPIOF->BSRRH= GPIO_Pin_9;
 		GPIOF->BSRRL= GPIO_Pin_10;
@@ -37,7 +38,7 @@ int main(void)
 		GPIOF->BSRRL= GPIO_Pin_9;
 		GPIOF->BSRRH= GPIO_Pin_10;
 		delay_ms(1000);
-		
+		*/
 	}
 	
 }
