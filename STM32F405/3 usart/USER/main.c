@@ -13,8 +13,7 @@ int main(void)
 	delay_init(168);
 	KEY_Init();
 	LED_Init();
-	BEEP_Init();
-	LED0=0;
+	LED0=0;//点亮LED0
 	while(1)
 	{
 		key=KEY_Scan(NON_CONTINUE);
@@ -23,17 +22,14 @@ int main(void)
 			switch(key)
 			{
 				case KEY0_PRES:
-					LED0=!LED0;
-					LED1=!LED1;
+					LED0=!LED0;//KEY0控制LED0翻转
 					break;				
 				case KEY1_PRES:
-					LED1=!LED1;
+					LED1=!LED1;//KEY1控制LED1翻转
 					break;
-				case KEY2_PRES:
+				case START_PRES:	//START键控制两个灯翻转				
 					LED0=!LED0;
-					break;
-				case WK_UP_PRES:					
-					BEEP=!BEEP;
+					LED1=!LED1;
 					break;			
 			}		
 		}
