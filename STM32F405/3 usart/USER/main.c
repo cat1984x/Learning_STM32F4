@@ -1,43 +1,39 @@
 #include "stm32f4xx.h"
 #include "delay.h"
 #include "key.h"
-#include "beep.h"
 #include "led.h"
-#define CONTINUE 1
-#define NON_CONTINUE 0
-
+#include "usart.h"
 
 int main(void)
-{
-	u8 key;
+{ 
+	u8 len;//字符长度
+	u16 times=0;
+	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);
 	delay_init(168);
-	KEY_Init();
+	uart_init(115200);
 	LED_Init();
-	LED0=0;//点亮LED0
+	//LED0=0;
 	while(1)
 	{
-		key=KEY_Scan(NON_CONTINUE);
-		if(key)
+		if(USART_RX_STA&0x8000)//是否接收完成
 		{
-			switch(key)
-			{
-				case KEY0_PRES:
-					LED0=!LED0;//KEY0控制LED0翻转
-					break;				
-				case KEY1_PRES:
-					LED1=!LED1;//KEY1控制LED1翻转
-					break;
-				case START_PRES:	//START键控制两个灯翻转				
-					LED0=!LED0;
-					LED1=!LED1;
-					break;			
-			}		
+			len=USART_RX_STA&0x3FFF;
+			printf("\n您发送的信息为:\n");
+			for(u8 i=0;i<len;i++)
+			{				
+				USART_SendData(USART1,USART_RX_BUF[i]);
+				while(USART_GetFlagStatus(USART1,USART_FLAG_TC)!=SET);
+			}
+			printf("\n");
+			USART_RX_STA=0;
+		}else
+		{
+			times++;
+			if(times%30==0)
+				LED1=!LED1;
+			delay_ms(10);		
 		}
-		else
-				delay_ms(10);
 	}	
 }
-
-
 
 
