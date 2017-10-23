@@ -5,7 +5,7 @@
 
 int main(void)
 {
-
+	RCC_HCLKConfig(RCC_SYSCLK_Div1);
 	delay_init(168);
 	LED_Init();
 	while(1)
@@ -24,10 +24,10 @@ int main(void)
 		//位带操作
 		LED0=0;//先亮
 		//LED1=1;
-		delay_ms(200);
+		delay_ms(500);
 		LED0=1;
 		//LED1=0;
-		delay_ms(200);
+		delay_ms(500);
 		
 		
 		/*
