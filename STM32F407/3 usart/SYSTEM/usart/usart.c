@@ -87,36 +87,6 @@ void uart_init(u32 bound)
 
 
 
-/*void USART1_IRQHandler(void)
-{
-	//LED0=0;
-	u8 Res;
-	if(USART_GetFlagStatus(USART1,USART_IT_RXNE)!=RESET)//不是FLAG
-	{
-		Res=USART_ReceiveData(USART1);
-		if((USART_RX_STA&0x8000)==0)//接收未完成
-		{
-			if(USART_RX_STA&0x4000)//接收到0x0d
-			{
-				if(Res!=0x0a)USART_RX_STA=0;//接收错误,重新开始
-				else 
-					USART_RX_STA|=0x8000;	//接收完成了 			
-			}
-			else
-			{
-				if(Res!=0x0d)
-					USART_RX_STA|=0x4000;	
-				else
-				{
-					USART_RX_BUF[USART_RX_STA&0x3FFF]=Res;//取低14位
-					USART_RX_STA++;
-					if(USART_RX_STA>(USART_REC_LEN-1))
-						USART_RX_STA=0;//超出长度，重新接收
-				}			
-			}		
-		}	
-	}
-}*/
 
 void USART1_IRQHandler(void)                	//串口1中断服务程序
 {

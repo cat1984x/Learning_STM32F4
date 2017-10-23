@@ -104,7 +104,7 @@ void USART1_IRQHandler(void)
 			}
 			else
 			{
-				if(Res!=0x0d)
+				if(Res==0x0d)//²»ÊÇ!=
 					USART_RX_STA|=0x4000;	
 				else
 				{
