@@ -21,7 +21,7 @@ int main(void)
 			printf("\n您发送的信息为:\n");
 			for(u8 i=0;i<len;i++)
 			{				
-				USART_SendData(USART1,USART_RX_BUF[i]);
+				USART_SendData(USART1,USART_RX_BUF[i]);//数组里面是i，不能是len
 				while(USART_GetFlagStatus(USART1,USART_FLAG_TC)!=SET);
 			}
 			printf("\n");
