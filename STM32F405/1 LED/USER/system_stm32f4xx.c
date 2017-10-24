@@ -328,7 +328,7 @@
 #if defined (STM32F40_41xxx)
 #define PLL_N      336
 /* SYSCLK = PLL_VCO / PLL_P */
-#define PLL_P      4
+#define PLL_P      4  //2改为4，内部晶振为16M，外部为8M，所以除以的系数要变为2倍
 #endif /* STM32F40_41xxx */
 
 #if defined (STM32F427_437xx) || defined (STM32F429_439xx)
@@ -661,6 +661,8 @@ static void SetSysClock(void)
   else
   { /* If HSE fails to start-up, the application will have wrong clock
          configuration. User can add here some code to deal with this error */
+
+		
   }
 #elif defined (STM32F411xE)
 #if defined (USE_HSE_BYPASS) 
