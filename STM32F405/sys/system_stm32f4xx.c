@@ -293,9 +293,9 @@
      through STLINK MCO pin of STM32F103 microcontroller. The frequency cannot be changed
      and is fixed at 8 MHz. 
      Hardware configuration needed for Nucleo Board:
-     – SB54, SB55 OFF
-     – R35 removed
-     – SB16, SB50 ON */
+     ?SB54, SB55 OFF
+     ?R35 removed
+     ?SB16, SB50 ON */
 /* #define USE_HSE_BYPASS */
 
 #if defined (USE_HSE_BYPASS)     
@@ -328,7 +328,7 @@
 #if defined (STM32F40_41xxx)
 #define PLL_N      336
 /* SYSCLK = PLL_VCO / PLL_P */
-#define PLL_P      2
+#define PLL_P      4
 #endif /* STM32F40_41xxx */
 
 #if defined (STM32F427_437xx) || defined (STM32F429_439xx)
@@ -567,28 +567,28 @@ static void SetSysClock(void)
 /******************************************************************************/
 /*            PLL (clocked by HSE) used as System clock source                */
 /******************************************************************************/
-  __IO uint32_t StartUpCounter = 0, HSEStatus = 0;
+  __IO uint32_t StartUpCounter = 0, HSIStatus = 0;
   
   /* Enable HSE */
-  RCC->CR |= ((uint32_t)RCC_CR_HSEON);
+  RCC->CR |= ((uint32_t)RCC_CR_HSION);
  
   /* Wait till HSE is ready and if Time out is reached exit */
   do
   {
-    HSEStatus = RCC->CR & RCC_CR_HSERDY;
+    HSIStatus = RCC->CR & RCC_CR_HSIRDY;
     StartUpCounter++;
-  } while((HSEStatus == 0) && (StartUpCounter != HSE_STARTUP_TIMEOUT));
+  } while((HSIStatus == 0) && (StartUpCounter != HSI_STARTUP_TIMEOUT));
 
-  if ((RCC->CR & RCC_CR_HSERDY) != RESET)
+  if ((RCC->CR & RCC_CR_HSIRDY) != RESET)
   {
-    HSEStatus = (uint32_t)0x01;
+    HSIStatus = (uint32_t)0x01;
   }
   else
   {
-    HSEStatus = (uint32_t)0x00;
+    HSIStatus = (uint32_t)0x00;
   }
 
-  if (HSEStatus == (uint32_t)0x01)
+  if (HSIStatus == (uint32_t)0x01)
   {
     /* Select regulator voltage output Scale 1 mode */
     RCC->APB1ENR |= RCC_APB1ENR_PWREN;
@@ -615,7 +615,7 @@ static void SetSysClock(void)
    
     /* Configure the main PLL */
     RCC->PLLCFGR = PLL_M | (PLL_N << 6) | (((PLL_P >> 1) -1) << 16) |
-                   (RCC_PLLCFGR_PLLSRC_HSE) | (PLL_Q << 24);
+                   (RCC_PLLCFGR_PLLSRC_HSI) | (PLL_Q << 24);
 
     /* Enable the main PLL */
     RCC->CR |= RCC_CR_PLLON;
@@ -705,7 +705,7 @@ static void SetSysClock(void)
 
     /* Configure the main PLL */
     RCC->PLLCFGR = PLL_M | (PLL_N << 6) | (((PLL_P >> 1) -1) << 16) |
-                   (RCC_PLLCFGR_PLLSRC_HSE) | (PLL_Q << 24);
+                   (RCC_PLLCFGR_PLLSRC_HSI) | (PLL_Q << 24);
     
     /* Enable the main PLL */
     RCC->CR |= RCC_CR_PLLON;

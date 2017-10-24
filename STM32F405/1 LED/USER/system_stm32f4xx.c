@@ -328,7 +328,7 @@
 #if defined (STM32F40_41xxx)
 #define PLL_N      336
 /* SYSCLK = PLL_VCO / PLL_P */
-#define PLL_P      2
+#define PLL_P      4
 #endif /* STM32F40_41xxx */
 
 #if defined (STM32F427_437xx) || defined (STM32F429_439xx)
