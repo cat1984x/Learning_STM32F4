@@ -6,7 +6,7 @@
 int main(void)
 {
 	RCC_HCLKConfig(RCC_SYSCLK_Div1);
-	delay_init(168);
+	delay_init(16);
 	LED_Init();
 	while(1)
 	{
