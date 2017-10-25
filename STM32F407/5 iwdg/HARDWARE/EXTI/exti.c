@@ -4,6 +4,7 @@
 #include "delay.h"
 #include "beep.h"
 #include "stm32f4xx_exti.h"
+#include "iwdg.h"
 
 void EXTI_init(void)
 {
@@ -58,7 +59,7 @@ void EXTI0_IRQHandler(void)
 {
 		delay_ms(10);//È¥¶¶¶¯
 		if(WK_UP==1) 
-			BEEP=!BEEP;
+			IWDG_Feed();
 		EXTI_ClearITPendingBit(EXTI_Line0);
 }
 void EXTI2_IRQHandler(void)
