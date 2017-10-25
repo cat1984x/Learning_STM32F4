@@ -4,14 +4,14 @@
 #include "beep.h"
 #include "led.h"
 #include "exti.h"
-#define CONTINUE 1
-#define NON_CONTINUE 0
+#include "usart.h"
 
 
 int main(void)
 {
 	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);
 	delay_init(168);
+	uart_init(115200);
 	KEY_Init();
 	LED_Init();
 	BEEP_Init();
@@ -19,6 +19,8 @@ int main(void)
 	LED0=0;
 	while(1)
 	{
+		printf("OK\r\n");
+		delay_ms(1000);
 	}	
 }
 
