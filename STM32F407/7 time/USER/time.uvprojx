@@ -7,7 +7,7 @@
 
   <Targets>
     <Target>
-      <TargetName>wwdg</TargetName>
+      <TargetName>time</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
       <pCCUsed>5050106::V5.05 update 1 (build 106)::ARMCC</pCCUsed>
@@ -48,7 +48,7 @@
             <InvalidFlash>1</InvalidFlash>
           </TargetStatus>
           <OutputDirectory>..\OBJ\</OutputDirectory>
-          <OutputName>wwdg</OutputName>
+          <OutputName>time</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
           <CreateHexFile>1</CreateHexFile>
@@ -334,7 +334,7 @@
               <MiscControls></MiscControls>
               <Define>STM32F40_41xxx,USE_STDPERIPH_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath>..\CORE;..\FWLIB\inc;..\USER;..\SYSTEM\delay;..\SYSTEM\sys;..\SYSTEM\usart;..\HARDWARE\BEEP;..\HARDWARE\KEY;..\HARDWARE\LED;..\HARDWARE\EXTI;..\HARDWARE\IWDG;..\HARDWARE\WWDG</IncludePath>
+              <IncludePath>..\CORE;..\FWLIB\inc;..\USER;..\SYSTEM\delay;..\SYSTEM\sys;..\SYSTEM\usart;..\HARDWARE\BEEP;..\HARDWARE\KEY;..\HARDWARE\LED;..\HARDWARE\EXTI;..\HARDWARE\IWDG;..\HARDWARE\WWDG;..\HARDWARE\TIME</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -448,6 +448,11 @@
               <FileType>1</FileType>
               <FilePath>..\FWLIB\src\stm32f4xx_wwdg.c</FilePath>
             </File>
+            <File>
+              <FileName>stm32f4xx_tim.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\FWLIB\src\stm32f4xx_tim.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -502,6 +507,11 @@
               <FileName>wwdg.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\HARDWARE\WWDG\wwdg.c</FilePath>
+            </File>
+            <File>
+              <FileName>time.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\TIME\time.c</FilePath>
             </File>
           </Files>
         </Group>
